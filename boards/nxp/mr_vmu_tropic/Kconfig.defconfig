@@ -1,0 +1,15 @@
+# NXP MR-VMU-Tropic board
+
+# Copyright 2018,2023 NXP
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_MR_VMU_TROPIC
+
+if NETWORKING
+
+config NET_L2_ETHERNET
+	default y
+
+endif # NETWORKING
+
+endif # BOARD_MR_VMU_TROPIC

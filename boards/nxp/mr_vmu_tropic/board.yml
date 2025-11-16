@@ -1,0 +1,6 @@
+board:
+  name: mr_vmu_tropic
+  full_name: NXP MR-VMU-Tropic
+  vendor: nxp
+  socs:
+    - name: mimxrt1064
