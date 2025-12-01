@@ -149,17 +149,15 @@
 &flexcomm9_lpspi9 {
 	pinctrl-0 = <&pinmux_flexcomm9_lpspi>;
 	pinctrl-names = "default";
-	pcs-sck-delay = <50>;
-	sck-pcs-delay = <50>;
-	transfer-delay = <50>;
-
-	cs-gpios = <&gpio2 2 GPIO_ACTIVE_LOW>;
 
 	paa3905: paa3905@0 {
 		compatible = "pixart,paa3905";
 		reg = <0>;
 		spi-max-frequency = <DT_FREQ_M(10)>;
-		int-gpios = <&gpio3 18 GPIO_ACTIVE_HIGH>;
+		spi-cs-setup-delay-ns = <50>;
+		spi-cs-hold-delay-ns = <50>;
+		spi-interframe-delay-ns = <50>;
+		int-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
 		/*led-control;*/
 	};
 
