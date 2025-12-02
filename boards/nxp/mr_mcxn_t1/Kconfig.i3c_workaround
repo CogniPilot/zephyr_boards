@@ -1,0 +1,13 @@
+config MCXN_T1_I3C_WORKAROUND
+	bool "Enable I3C workaround"
+	default y
+	select USB_DEVICE_STACK_NEXT
+	select CDC_ACM_SERIAL_INITIALIZE_AT_BOOT
+	select SERIAL
+	select CONSOLE
+	select UART_CONSOLE
+	select UART_LINE_CTRL
+	imply I2C
+
+configdefault USBD_CDC_ACM_LOG_LEVEL
+	default 0

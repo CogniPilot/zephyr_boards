@@ -17,6 +17,18 @@
 		};
 	};
 
+	pinmux_flexcomm1_lpi2c: pinmux_flexcomm1_lpi2c {
+		group0 {
+			pinmux = <FC1_P0_PIO0_20>,
+				 <FC1_P1_PIO0_21>;
+			slew-rate = "fast";
+			drive-strength = "low";
+			input-enable;
+			bias-pull-up;
+			drive-open-drain;
+		};
+	};
+
 	/* Optical Flow Board */
 	pinmux_flexcomm3_lpspi: pinmux_flexcomm3_lpspi {
 		group0 {

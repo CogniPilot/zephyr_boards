@@ -192,10 +192,8 @@ zephyr_udc0: &usb1 {
 	status = "okay"; /* Locks-up on startup with busy wait */
 };
 
-&bmp581_0 {
-	status = "disabled"; /* Locks-up on startup with busy wait */
-};
-
 &rtc {
 	status = "okay";
 };
+
+#include "i3c_workaround.dtsi"
