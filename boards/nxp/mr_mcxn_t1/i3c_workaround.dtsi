@@ -1,0 +1,45 @@
+/* Due to the I3C performance issue on BMM350, we're going with
+ * I2C native + USB CDC ACM for console.
+ * Scrub when I3C issue is resolved.
+ */
+
+&i3c0 {
+	status = "disabled";
+};
+
+&flexcomm1_lpuart1 {
+	status = "disabled";
+};
+
+/delete-node/&bmm350_0;
+/delete-node/&bmp581_0;
+
+&flexcomm1_lpi2c1 {
+	status = "okay";
+	pinctrl-0 = <&pinmux_flexcomm1_lpi2c>;
+	pinctrl-names = "default";
+	clock-frequency = <I2C_BITRATE_STANDARD>;
+
+	bmm350_0: bmm350_0@14  {
+		compatible = "bosch,bmm350";
+		reg = <0x14>;
+		odr = "100";
+		drdy-gpios = <&gpio0 19 GPIO_ACTIVE_HIGH>;
+		push-pull-int;
+		active-high-int;
+	};
+};
+
+/ {
+	chosen {
+		zephyr,console = &snippet_cdc_acm_console_uart;
+		zephyr,shell-uart = &snippet_cdc_acm_console_uart;
+		zephyr,uart-mcumgr = &snippet_cdc_acm_console_uart;
+	};
+};
+
+&zephyr_udc0 {
+	snippet_cdc_acm_console_uart: snippet_cdc_acm_console_uart {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};

@@ -40,6 +40,26 @@
 	pinctrl-names = "default";
 };
 
+&i3c0 {
+	status = "okay";
+	pinctrl-0 = <&pinmux_i3c0>;
+	pinctrl-names = "default";
+	i2c-scl-hz = <400000>;
+
+	bmp581_0: bmp581_0@470000000000000050  {
+		compatible = "bosch,bmp581";
+		reg = <0x47 0x0 0x50>;
+	};
+
+	bmm350_0: bmm350_0@140000000000000050  {
+		compatible = "bosch,bmm350";
+		reg = <0x14 0x0 0x50>;
+		drdy-gpios = <&gpio0 19 GPIO_ACTIVE_HIGH>;
+		push-pull-int;
+		active-high-int;
+	};
+};
+
 /* Optical Flow Board */
 &flexcomm3_lpspi3 {
 	pinctrl-0 = <&pinmux_flexcomm3_lpspi>;
@@ -232,22 +252,6 @@
 		reg = <0x12>;
 		int-gpios = <&gpio1 19 GPIO_ACTIVE_LOW>;
 		master-slave = "auto";
-	};
-};
-
-&i3c0 {
-	pinctrl-0 = <&pinmux_i3c0>;
-	pinctrl-names = "default";
-	i2c-scl-hz = <400000>;
-
-	bmp581_0: bmp581_0@470000000000000050  {
-		compatible = "bosch,bmp581";
-		reg = <0x47 0x0 0x50>;
-	};
-
-	bmm350_0: bmm350_0@140000000000000050  {
-		compatible = "bosch,bmm350";
-		reg = <0x14 0x0 0x50>;
 	};
 };
 
