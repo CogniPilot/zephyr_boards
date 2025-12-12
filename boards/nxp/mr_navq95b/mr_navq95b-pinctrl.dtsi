@@ -185,8 +185,7 @@
 	tpm5_pwm6_pwm7: tpm5_pwm6_pwm7 {
 		group0 {
 			pinmux = <&iomuxc_gpio_io06_tpm_ch_tpm5_ch0>,
-				<&iomuxc_gpio_io18_tpm_ch_tpm5_ch2>,
-				<&iomuxc_gpio_io26_tpm_ch_tpm5_ch3>;
+				<&iomuxc_gpio_io22_tpm_ch_tpm5_ch1>;
 			slew-rate = "slightly_fast";
 			drive-strength = "x4";
 		};
