@@ -163,15 +163,17 @@
 	};
 
 	/* pwm pins */
-	tpm3_pwm1: tpm3_pwm1 {
+	tpm3_pwm1_pwm2_pwm3: tpm3_pwm1_pwm2_pwm3 {
 		group0 {
-			pinmux = <&iomuxc_gpio_io20_tpm_ch_tpm3_ch1>;
+			pinmux = <&iomuxc_gpio_io04_tpm_ch_tpm3_ch0>,
+				<&iomuxc_gpio_io20_tpm_ch_tpm3_ch1>,
+				<&iomuxc_gpio_io24_tpm_ch_tpm3_ch3>;
 			slew-rate = "slightly_fast";
 			drive-strength = "x4";
 		};
 	};
 
-	tpm4_pwm2_pwm3: tpm4_pwm2_pwm3 {
+	tpm4_pwm4_pwm5: tpm4_pwm4_pwm5 {
 		group0 {
 			pinmux = <&iomuxc_gpio_io05_tpm_ch_tpm4_ch0>,
 				<&iomuxc_gpio_io21_tpm_ch_tpm4_ch1>;
@@ -180,7 +182,7 @@
 		};
 	};
 
-	tpm5_pwm4_pwm5_pwm6: tpm5_pwm4_pwm5_pwm6 {
+	tpm5_pwm6_pwm7: tpm5_pwm6_pwm7 {
 		group0 {
 			pinmux = <&iomuxc_gpio_io06_tpm_ch_tpm5_ch0>,
 				<&iomuxc_gpio_io18_tpm_ch_tpm5_ch2>,

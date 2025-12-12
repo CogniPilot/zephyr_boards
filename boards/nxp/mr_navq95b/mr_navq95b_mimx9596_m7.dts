@@ -9,7 +9,7 @@
 #include <nxp/nxp_imx95_m7.dtsi>
 #include <zephyr/dt-bindings/pwm/pwm.h>
 #include "mr_navq95b-pinctrl.dtsi"
-#include <zephyr/dt-bindings/sensor/icm42686.h>
+#include <zephyr/dt-bindings/sensor/icm45686.h>
 
 / {
 	model = "NXP MR-NavQ95B";
@@ -82,20 +82,22 @@
 	status = "okay";
 	/* cs-gpios =<&gpio1 11 GPIO_ACTIVE_LOW>; */
 
-	icm42686: icm42686@0 {
-		compatible = "invensense,icm42686", "invensense,icm4268x";
+	icm45686: icm45686@0 {
+		compatible = "invensense,icm45686";
 		reg = <0>;
 		/* int-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>; */
-		spi-max-frequency = <DT_FREQ_M(24)>;
+		spi-max-frequency = <DT_FREQ_M(20)>;
 		spi-cs-setup-delay-ns = <50>;
 		spi-cs-hold-delay-ns = <50>;
 		spi-interframe-delay-ns = <50>;
-		accel-pwr-mode = <ICM42686_DT_ACCEL_LN>;
-		accel-odr = <ICM42686_DT_ACCEL_ODR_1000>;
-		accel-fs = <ICM42686_DT_ACCEL_FS_16>;
-		gyro-pwr-mode = <ICM42686_DT_GYRO_LN>;
-		gyro-odr = <ICM42686_DT_GYRO_ODR_1000>;
-		gyro-fs = <ICM42686_DT_GYRO_FS_2000>;
+		accel-pwr-mode = <ICM45686_DT_ACCEL_LN>;
+		accel-fs = <ICM45686_DT_ACCEL_FS_2>;
+		accel-odr = <ICM45686_DT_ACCEL_ODR_400>;
+		accel-lpf = <ICM45686_DT_ACCEL_LPF_BW_1_32>;
+		gyro-pwr-mode = <ICM45686_DT_GYRO_LN>;
+		gyro-fs = <ICM45686_DT_GYRO_FS_4000>;
+		gyro-odr = <ICM45686_DT_GYRO_ODR_400>;
+		gyro-lpf = <ICM45686_DT_GYRO_LPF_BW_1_32>;
 	};
 };
 
@@ -104,9 +106,9 @@
 	pinctrl-names = "default";
 	status = "okay";
 
-	bmi08x_accel: bmi08x@1 {
+	bmi08x_accel: bmi08x@0 {
 		compatible = "bosch,bmi08x-accel";
-		reg = <1>;
+		reg = <0>;
 		/* int-gpios = <&gpio3 20 GPIO_ACTIVE_HIGH>; */ // TODO
 		spi-max-frequency = <DT_FREQ_M(10)>;
 		spi-cs-setup-delay-ns = <50>;
@@ -120,9 +122,9 @@
 		accel-fs = <24>;
 	};
 
-	bmi08x_gyro: bmi08x@2 {
+	bmi08x_gyro: bmi08x@1 {
 		compatible = "bosch,bmi08x-gyro";
-		reg = <2>;
+		reg = <1>;
 		/* int-gpios = <&gpio2 28 GPIO_ACTIVE_HIGH>; */ // TODO
 		spi-max-frequency = <DT_FREQ_M(10)>;
 		spi-cs-setup-delay-ns = <50>;
@@ -188,21 +190,20 @@ Needs Zephyr CAN-FD fix firest
 
 &tpm3 {
 	status = "okay";
-	pinctrl-0 = <&tpm3_pwm1>;
+	pinctrl-0 = <&tpm3_pwm1_pwm2_pwm3>;
 	pinctrl-names = "default";
 };
 
 &tpm4 {
-	compatible = "nxp,tpm-qdec";
 	status = "okay";
-	pinctrl-0 = <&tpm4_pwm2_pwm3>;
+	pinctrl-0 = <&tpm4_pwm4_pwm5>;
 	pinctrl-names = "default";
-	micro-ticks-per-rev = <685440000>;
-	/delete-property/ prescaler;
 };
 
 &tpm5 {
 	status = "okay";
-	pinctrl-0 = <&tpm5_pwm4_pwm5_pwm6>;
+	pinctrl-0 = <&tpm5_pwm6_pwm7>;
 	pinctrl-names = "default";
 };
+
+//TODO TPM6 buzzer
