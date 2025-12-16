@@ -65,16 +65,15 @@
 	pinctrl-0 = <&pinmux_flexcomm3_lpspi>;
 	pinctrl-1 = <&pinmux_flexcomm3_lpspi_gpio>;
 	pinctrl-names = "default", "priv_start";
-	pcs-sck-delay = <50>;
-	sck-pcs-delay = <50>;
-	transfer-delay = <50>;
-
 	cs-gpios = <&gpio1 3 GPIO_ACTIVE_LOW>;
 
 	afbr_s50: afbr_s50@0 {
 		compatible = "brcm,afbr-s50";
 		reg = <0>;
-		spi-max-frequency = <DT_FREQ_M(10)>;
+		spi-max-frequency = <DT_FREQ_M(20)>;
+		spi-cs-setup-delay-ns = <50>;
+		spi-cs-hold-delay-ns = <50>;
+		spi-interframe-delay-ns = <50>;
 		odr = <50>;
 		dual-freq-mode = <AFBR_S50_DT_DFM_MODE_4X>;
 		measurement-mode = <AFBR_S50_DT_MODE_SHORT_RANGE>;
@@ -169,7 +168,7 @@
 	paa3905: paa3905@0 {
 		compatible = "pixart,paa3905";
 		reg = <0>;
-		spi-max-frequency = <DT_FREQ_M(10)>;
+		spi-max-frequency = <DT_FREQ_M(20)>;
 		spi-cs-setup-delay-ns = <50>;
 		spi-cs-hold-delay-ns = <50>;
 		spi-interframe-delay-ns = <50>;
