@@ -1,0 +1,11 @@
+/* MCUboot overlay for MR-MCXN-T1
+ * Disable flexcomm-based peripherals that cause build issues
+ */
+
+&flexcomm1_lpi2c1 {
+	status = "disabled";
+};
+
+&flexcomm1_lpuart1 {
+	status = "disabled";
+};
