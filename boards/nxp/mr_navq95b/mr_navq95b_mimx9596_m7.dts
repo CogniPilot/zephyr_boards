@@ -27,6 +27,16 @@
 	};
 };
 
+&gpio2 {
+	status = "okay";
+	irq-output-select = <1>;
+};
+
+&gpio5 {
+	status = "okay";
+	irq-output-select = <1>;
+};
+
 &flexspi {
 	status = "okay";
 	ahb-prefetch;
@@ -85,7 +95,7 @@
 	icm45686: icm45686@0 {
 		compatible = "invensense,icm45686";
 		reg = <0>;
-		/* int-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>; */
+		int-gpios = <&gpio5 11 GPIO_ACTIVE_HIGH>;
 		spi-max-frequency = <DT_FREQ_M(20)>;
 		spi-cs-setup-delay-ns = <50>;
 		spi-cs-hold-delay-ns = <50>;
@@ -98,6 +108,8 @@
 		gyro-fs = <ICM45686_DT_GYRO_FS_4000>;
 		gyro-odr = <ICM45686_DT_GYRO_ODR_400>;
 		gyro-lpf = <ICM45686_DT_GYRO_LPF_BW_1_32>;
+
+		fifo-watermark = <1>;
 	};
 };
 
