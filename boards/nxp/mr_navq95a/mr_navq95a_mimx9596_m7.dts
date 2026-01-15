@@ -21,8 +21,8 @@
 		zephyr,sram = &dtcm;
 
 		zephyr,flash-controller = &mx25um51345g;
-		zephyr,console = &lpuart3;
-		zephyr,shell-uart = &lpuart3;
+		zephyr,console = &lpuart7;
+		zephyr,shell-uart = &lpuart7;
 		/*zephyr,canbus = &flexcan5;*/
 	};
 };
@@ -85,7 +85,7 @@
 	icm42686: icm42686@0 {
 		compatible = "invensense,icm42686", "invensense,icm4268x";
 		reg = <0>;
-		/* int-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>; */
+		int-gpios = <&gpio3 27 GPIO_ACTIVE_HIGH>;
 		spi-max-frequency = <DT_FREQ_M(24)>;
 		spi-cs-setup-delay-ns = <50>;
 		spi-cs-hold-delay-ns = <50>;
@@ -109,7 +109,6 @@
 	bmi08x_accel: bmi08x@1 {
 		compatible = "bosch,bmi08x-accel";
 		reg = <1>;
-		/* int-gpios = <&gpio3 20 GPIO_ACTIVE_HIGH>; */
 		spi-max-frequency = <DT_FREQ_M(10)>;
 		spi-cs-setup-delay-ns = <50>;
 		spi-cs-hold-delay-ns = <50>;
@@ -125,7 +124,6 @@
 	bmi08x_gyro: bmi08x@2 {
 		compatible = "bosch,bmi08x-gyro";
 		reg = <2>;
-		/* int-gpios = <&gpio2 28 GPIO_ACTIVE_HIGH>; */
 		spi-max-frequency = <DT_FREQ_M(10)>;
 		spi-cs-setup-delay-ns = <50>;
 		spi-cs-hold-delay-ns = <50>;
