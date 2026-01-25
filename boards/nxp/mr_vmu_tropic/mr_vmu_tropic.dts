@@ -232,11 +232,10 @@
 	pinctrl-0 = <&pinmux_lpuart8>;
 	pinctrl-1 = <&pinmux_lpuart8_sleep>;
 	pinctrl-names = "default", "sleep";
-	current-speed = <115200>;
-	rx-invert;
+	current-speed = <420000>;
 
 	sbus0: sbus {
-		compatible = "futaba,sbus";
+		compatible = "tbs,crsf";
 
 		chan_1 {
 			channel = <1>;
