@@ -23,7 +23,7 @@
 		zephyr,flash-controller = &mx25um51345g;
 		zephyr,console = &lpuart2;
 		zephyr,shell-uart = &lpuart2;
-		/*zephyr,canbus = &flexcan5;*/
+		zephyr,canbus = &flexcan2;
 	};
 };
 
@@ -192,13 +192,17 @@
 	};
 };
 
-/*
-Needs Zephyr CAN-FD fix firest
-&flexcan5 {
-	pinctrl-0 = <&flexcan5_default>;
+&flexcan2 {
+	pinctrl-0 = <&flexcan2_default>;
 	pinctrl-names = "default";
 	status = "okay";
-};*/
+};
+
+&flexcan3 {
+	pinctrl-0 = <&flexcan3_default>;
+	pinctrl-names = "default";
+	status = "okay";
+};
 
 &tpm3 {
 	status = "okay";

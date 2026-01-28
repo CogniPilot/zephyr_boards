@@ -163,10 +163,19 @@
 		};
 	};
 
-	flexcan5_default: flexcan5_default {
+	flexcan2_default: flexcan2_default {
 		group0 {
-			pinmux = <&iomuxc_gpio_io22_can_tx_can5_tx>,
-				<&iomuxc_gpio_io23_can_rx_can5_rx>;
+			pinmux = <&iomuxc_gpio_io25_can_tx_can2_tx>,
+				<&iomuxc_gpio_io27_can_rx_can2_rx>;
+			slew-rate = "slightly_fast";
+			drive-strength = "x4";
+		};
+	};
+
+	flexcan3_default: flexcan3_default {
+		group0 {
+			pinmux = <&iomuxc_ccm_clko3_can_tx_can3_tx>,
+				<&iomuxc_ccm_clko4_can_rx_can3_rx>;
 			slew-rate = "slightly_fast";
 			drive-strength = "x4";
 		};
