@@ -4,8 +4,14 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+zephyr_library()
+# board.c provides board_early_init_hook / board_late_init_hook, which the board
+# selects via BOARD_EARLY_INIT_HOOK and the kernel always calls. It must compile
+# even when this image has no boot header of its own (an MCUboot child image),
+# so keep it out of the boot-header block.
+zephyr_library_sources(board.c)
+
 if(CONFIG_NXP_IMXRT_BOOT_HEADER)
-  zephyr_library()
   if(NOT DEFINED CONFIG_BOARD_MR_VMU_TROPIC)
     message(WARNING "It appears you are using the board definition for "
      "the NXP-VMU-Tropic, but targeting a custom board. You may need to "
@@ -17,7 +23,7 @@ if(CONFIG_NXP_IMXRT_BOOT_HEADER)
     # information.
     zephyr_compile_definitions(XIP_BOOT_HEADER_ENABLE=1)
     zephyr_compile_definitions(BOARD_FLASH_SIZE=CONFIG_FLASH_SIZE*1024)
-    zephyr_library_sources(xip/mr_vmu_tropic_flexspi_nor_config.c board.c)
+    zephyr_library_sources(xip/mr_vmu_tropic_flexspi_nor_config.c)
     zephyr_library_include_directories(xip)
   endif()
 endif()

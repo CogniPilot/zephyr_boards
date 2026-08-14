@@ -23,6 +23,7 @@
 
 	chosen {
 		zephyr,flash = &w25q32jvwj0;
+		zephyr,flash-controller = &soc_flash_ctrl;
 		zephyr,code-partition = &slot0_partition;
 		zephyr,uart-mcumgr = &lpuart6;
 		zephyr,sram = &ocram2;
