@@ -6,7 +6,7 @@
 
 /dts-v1/;
 
-#include <nxp/nxp_rt1064.dtsi>
+#include <nxp/imxrt/nxp_rt1064.dtsi>
 #include "mr_vmu_tropic-pinctrl.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <zephyr/dt-bindings/sensor/icm45686.h>
@@ -320,10 +320,14 @@
 	};
 };
 
-&enet_mac {
+&enet {
 	status = "okay";
 	pinctrl-0 = <&pinmux_enet>;
 	pinctrl-names = "default";
+};
+
+&enet_mac {
+	status = "okay";
 	phy-handle = <&phy>;
 	nxp,unique-mac;
 	phy-connection-type = "rmii";
